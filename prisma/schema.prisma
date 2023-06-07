@@ -8,15 +8,16 @@ datasource db {
 }
 
 model clicker {
-  id     Int    @id @unique @default(autoincrement())
   clicks Int
-  userId Int @unique
+  userId Int   @unique
+  user   users @relation(fields: [userId], references: [id])
 }
 
 model users {
-  id       Int    @id @unique @default(autoincrement())
-  salt     String @unique
-  hash     String @unique
-  session  String @unique
-  username String @unique
+  id       Int      @id @unique @default(autoincrement())
+  hash     String   @unique
+  salt     String   @unique
+  session  String   @unique
+  username String   @unique
+  clicker  clicker?
 }

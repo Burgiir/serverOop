@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { LayoutServerData } from "./$types";
-  export let data: LayoutServerData;
+  // export let data: LayoutServerData | any;
 </script>
 
 <nav>

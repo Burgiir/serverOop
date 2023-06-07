@@ -1,5 +1,5 @@
 import { database } from "$lib/database";
-import { redirect } from "@sveltejs/kit";
+import { fail,redirect } from "@sveltejs/kit";
 import type { Actions } from "./$types";
 import * as crypto from "crypto";
 import {auth} from "$lib/auth";
@@ -8,15 +8,15 @@ let klicks = 0;
 
 export const actions: Actions = {
   register: async ({ request, locals, cookies }) => {
-    try{
+    
       const form = await request.formData();
       const herbaberb = await auth.register(form)
-    } catch (e){
-      console.error(e);
-      return {
-        error:{code: 400}
+
+      if (herbaberb.error){
+        return fail(herbaberb.error.code, herbaberb.error.data)
       }
-    }
+      
+
     
     // const username = form.get("username")?.toString();
     // const password = form.get("password")?.toString();
