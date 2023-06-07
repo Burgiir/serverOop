@@ -60,7 +60,7 @@ import { redirect } from "@sveltejs/kit";
            // secure: process.env.NODE_ENV === "production", // optional for now
            // maxAge: 120, //
           //});
-          throw redirect(302, "/");
+          throw redirect(302, "/login");
         }
       }
       // TODO: Implement register
